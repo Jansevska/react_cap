@@ -8,7 +8,7 @@ type PostProps = {
 
 export default function Post({ post }: PostProps) {
     return (
-        <Card className='my-3'>
+        <Card className='mt-3 bg-primary-subtle' data-bs-theme="light">
             {/* <Card.Img variant='top' src={post.imageUrl} /> */}
             <Card.Body>
                 <Card.Title>{ post.title }</Card.Title>

@@ -11,7 +11,7 @@ type Props = {
 export default function Navigation({ isLoggedIn, handleLogOut }: Props) {
     return (
         <>
-            <Navbar expand="lg" bg="primary" data-bs-theme="dark">
+            <Navbar className='mb-4' expand="lg" bg="primary" data-bs-theme="dark">
                 <Container fluid >
                     <Navbar.Brand as={Link} to='/'>Hoe Hui</Navbar.Brand>
                     <Nav className="me-auto">
