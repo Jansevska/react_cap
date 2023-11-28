@@ -56,7 +56,7 @@ export default function SignUp({ logUserIn, flashMessage }: SignUpProps) {
     return (
         <>
             <h1 className="text-center">Sign Up</h1>
-            <Card className='mt-3 bg-secondary-subtle' data-bs-theme="light" >
+            <Card className='mt-3' data-bs-theme="light" >
                 <Card.Body>
                     <Form onSubmit={handleFormSubmit}>
                         <Form.Label htmlFor='firstName'>First Name</Form.Label>

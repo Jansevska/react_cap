@@ -12,9 +12,9 @@ type PostProps = {
 
 export default function Post({ post, currentUser }: PostProps) {
     return (
-        <Card className='my-3'>
+        <Card className='my-3 bg-secondary-subtle' data-bs-theme="dark" >
             {/* <Card.Img variant='top' src={post.imageUrl} /> */}
-            <Card.Body>
+            <Card.Body >
                 <Card.Title>{ post.title }</Card.Title>
                 <Card.Text>{ post.body }</Card.Text>
                 <Card.Subtitle>Posted at {post.dateCreated} by {post.author.username}</Card.Subtitle>
