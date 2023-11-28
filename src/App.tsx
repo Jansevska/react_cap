@@ -42,10 +42,10 @@ export default function App() {
                 <Navigation isLoggedIn={isLoggedIn} handleLogOut={logUserOut}/>
                 {message && category && <AlertMessage message={message} category={category} flashMessage={flashMessage} />}
                 <Routes>
-                    <Route path="/" element={<Home loggedInUser={loggedInUser}/>} />
-                    <Route path="/posts" element={<PostsView loggedInUser={loggedInUser}/>} />
+                    <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
+                    <Route path="/posts" element={<PostsView />} />
                     <Route path="/signup" element={<SignUp logUserIn={logUserIn} />} />
-                    <Route path="/login" element={<LogIn logUserIn={logUserIn} isLoggedIn={isLoggedIn} flashMessage={flashMessage}/>} />
+                    <Route path="/login" element={<LogIn logUserIn={logUserIn} isLoggedIn={isLoggedIn} flashMessage={flashMessage} />} />
                 </Routes>
             </Container>
         </BrowserRouter>
