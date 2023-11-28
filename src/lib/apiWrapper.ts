@@ -100,9 +100,77 @@ async function getMe(token:string): Promise<APIResponse<UserType>> {
     return {data, error}
 }
 
+async function createPost(token:string, postFormData: Partial<PostType>): Promise<APIResponse<PostType>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientTokenAuth(token).post(postEndpoint, postFormData);
+        data = response.data;
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data.error
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return {data, error}
+}
+
+async function getPost(postId:string): Promise<APIResponse<PostType>> {
+    let data;
+    let error;
+    try {
+        const response = await apiClientNoAuth().get(postEndpoint + '/' + postId);
+        data = response.data;
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data.error
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return {data, error}
+}
+
+async function editPost(token:string, postId:string, editedPostData:PostType): Promise<APIResponse<PostType>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientTokenAuth(token).put(postEndpoint + '/' + postId, editedPostData);
+        data = response.data;
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data.error
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return {data, error}
+}
+
+async function deletePost(token:string, postId:string): Promise<APIResponse<{success:string}>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientTokenAuth(token).delete(postEndpoint + '/' + postId);
+        data = response.data;
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data.error
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return {data, error}
+}
+
 export {
     getAllPosts,
     createNewUser,
     login,
     getMe,
+    createPost,
+    getPost,
+    editPost,
+    deletePost,
 }

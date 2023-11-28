@@ -8,6 +8,7 @@ import PostsView from './views/PostsView';
 import SignUp from './views/SignUp';
 import LogIn from './views/LogIn';
 import AlertMessage from './components/AlertMessage';
+import EditPost from './views/EditPost';
 
 import CategoryType from './types/category';
 import UserType from './types/auth';
@@ -18,7 +19,7 @@ import { getMe } from './lib/apiWrapper';
 export default function App() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [loggedInUser, setLoggedInUser] = useState<Partial<UserType>|null>(null)
+    const [loggedInUser, setLoggedInUser] = useState<UserType|null>(null)
     const [message, setMessage] = useState<string|null>(null);
     const [category, setCategory] = useState<CategoryType|null>(null);
 
@@ -38,7 +39,7 @@ export default function App() {
         getLoggedInUser();
     }, [isLoggedIn])
 
-    const logUserIn = (user:Partial<UserType>):void => {
+    const logUserIn = (user:UserType):void => {
         setIsLoggedIn(true);
         setLoggedInUser(user);
         flashMessage(`${user.username} has been logged in`, 'success');
@@ -57,14 +58,15 @@ export default function App() {
 
     return (
         <BrowserRouter>
-            <Container className='bg-primary' data-bs-theme="dark">
+            <Container data-bs-theme="dark">
                 <Navigation isLoggedIn={isLoggedIn} handleLogOut={logUserOut}/>
                 {message && category && <AlertMessage message={message} category={category} flashMessage={flashMessage} />}
                 <Routes>
                     <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
-                    <Route path="/posts" element={<PostsView />} />
-                    <Route path="/signup" element={<SignUp logUserIn={logUserIn} flashMessage={flashMessage}/>} />
+                    <Route path="/posts" element={<PostsView isLoggedIn={isLoggedIn} flashMessage={flashMessage} currentUser={loggedInUser} />} />
+                    <Route path="/signup" element={<SignUp logUserIn={logUserIn} flashMessage={flashMessage} />} />
                     <Route path="/login" element={<LogIn logUserIn={logUserIn} isLoggedIn={isLoggedIn} flashMessage={flashMessage} />} />
+                    <Route path="/posts/:postId" element={<EditPost currentUser={loggedInUser} flashMessage={flashMessage} />} />
                 </Routes>
             </Container>
         </BrowserRouter>
