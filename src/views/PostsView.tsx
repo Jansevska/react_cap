@@ -32,7 +32,9 @@ export default function PostsView({ isLoggedIn, flashMessage, currentUser }: Pos
     const sortedPosts = posts.sort((a, b) => {
         const dateA = new Date(a.dateCreated);
         const dateB = new Date(b.dateCreated);
-        return dateB - dateA;
+        const numberValueA = Number(dateA);
+        const numberValueB = Number(dateB);
+        return numberValueB - numberValueA;
     });
 
 
