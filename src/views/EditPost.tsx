@@ -79,15 +79,15 @@ export default function EditPost({ currentUser, flashMessage }: EditPostProps) {
         <>
             <h1 className="text-center">Edit {postToEdit?.title}</h1>
             {postToEdit && (
-                <Card>
+                <Card className='mt-3' data-bs-theme="light" >
                     <Card.Body>
                         <Form onSubmit={handleFormSubmit}>
                             <Form.Label>Edit Post Title</Form.Label>
                             <Form.Control name='title' value={postToEdit.title} onChange={handleInputChange} />
                             <Form.Label>Edit Post Body</Form.Label>
                             <Form.Control name='body' value={postToEdit.body} onChange={handleInputChange} />
-                            <Button variant='success' className='mt-3 w-50' type='submit'>Edit Post</Button>
-                            <Button variant='danger' className='mt-3 w-50' onClick={handleShow}>Delete Post</Button>
+                            <Button variant='outline-success' className='mt-3 w-25' type='submit'>Edit Post</Button>
+                            <Button variant='outline-danger' className='mt-3 ms-4 w-25' onClick={handleShow}>Delete Post</Button>
                         </Form>
                     </Card.Body>
                 </Card>

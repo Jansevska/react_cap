@@ -12,7 +12,7 @@ type PostProps = {
 
 export default function Post({ post, currentUser }: PostProps) {
     return (
-        <Card className='my-3 bg-secondary-subtle' data-bs-theme="dark" >
+        <Card className='my-3 bg-secondary' data-bs-theme="dark" >
             {/* <Card.Img variant='top' src={post.imageUrl} /> */}
             <Card.Body >
                 <Card.Title>{ post.title }</Card.Title>
@@ -20,7 +20,7 @@ export default function Post({ post, currentUser }: PostProps) {
                 <Card.Subtitle>Posted at {post.dateCreated} by {post.author.username}</Card.Subtitle>
                 {post.userId === currentUser?.id && (
                     <Link to={`/posts/${post.id}`}>
-                        <Button variant='light' className='mt-3'>Edit Post</Button>
+                        <Button variant='outline-light' className='mt-3'>Edit Post</Button>
                     </Link>
                 )}
             </Card.Body>

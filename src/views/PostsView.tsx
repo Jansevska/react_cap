@@ -31,8 +31,8 @@ export default function PostsView({ isLoggedIn, flashMessage, currentUser }: Pos
 
     return (
         <>
-            <h2>Posts</h2>
-            { isLoggedIn && <Button variant='secondary' onClick={() => setDisplayForm(!displayForm)}>
+            <h2 className='display-6 mb-4'>Posts</h2>
+            { isLoggedIn && <Button variant='outline-primary mb-3' onClick={() => setDisplayForm(!displayForm)}>
                 {displayForm ? 'Hide Form' : '+ Create New Post'}
             </Button>}
             

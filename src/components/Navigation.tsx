@@ -8,13 +8,13 @@ type Props = {
     handleLogOut: ()=>void
 }
 
-export default function Navigation({ isLoggedIn, handleLogOut }: Props) {
+export default function Navigation({ isLoggedIn, handleLogOut}: Props) {
     return (
         <>
         {/* <style type="text/css">
             {`.navbar {background-color: blue; color: black}`}
         </style> */}
-            <Navbar className='mb-4 fs-5' expand="lg" data-bs-theme="dark">
+            <Navbar sticky="top" className='mb-4 fs-5' expand="lg" data-bs-theme="dark">
                 <Container fluid >
                     <Navbar.Brand as={Link} to='/' className='display-1 fs-2'>Hoe Hui</Navbar.Brand>
                     <Nav className="me-auto">
@@ -31,7 +31,7 @@ export default function Navigation({ isLoggedIn, handleLogOut }: Props) {
                     )}
                     </Nav>
                     <Navbar.Text>
-                        Signed in as: <a href="#login">{ "New User" }</a>
+                        Signed in as: <a href="#login">{"Emili"}</a>
                     </Navbar.Text>
                 </Container>
             </Navbar>
