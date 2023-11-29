@@ -28,6 +28,13 @@ export default function PostsView({ isLoggedIn, flashMessage, currentUser }: Pos
 
         fetchData()
     }, [formSubmitted])
+    
+    const sortedPosts = posts.sort((a, b) => {
+        const dateA = new Date(a.dateCreated);
+        const dateB = new Date(b.dateCreated);
+        return dateB - dateA;
+    });
+
 
     return (
         <>
@@ -38,7 +45,7 @@ export default function PostsView({ isLoggedIn, flashMessage, currentUser }: Pos
             
             {displayForm && 
             <PostForm flashMessage={flashMessage} setDisplay={setDisplayForm} setForm={setFormSubmitted} toggle={formSubmitted} />}
-            {posts.map((post) => (
+            {sortedPosts.map((post) => (
                 <Post key={post.id} post={post} currentUser={currentUser} />
             ))}
         </>

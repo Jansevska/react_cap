@@ -56,7 +56,7 @@ export default function SignUp({ logUserIn, flashMessage }: SignUpProps) {
     return (
         <>
             <h1 className="text-center">Sign Up</h1>
-            <Card className='mt-3' data-bs-theme="light" >
+            <Card className='mt-3' border="light" data-bs-theme="light" >
                 <Card.Body>
                     <Form onSubmit={handleFormSubmit}>
                         <Form.Label htmlFor='firstName'>First Name</Form.Label>
@@ -77,7 +77,7 @@ export default function SignUp({ logUserIn, flashMessage }: SignUpProps) {
                         <Form.Label htmlFor='confirmPassword'>Confirm Password</Form.Label>
                         <Form.Control value={userFormData.confirmPassword} name='confirmPassword' type='password' onChange={handleInputChange} />
 
-                        <Button type='submit' variant='outline-primary' className='w-25 mt-3' disabled={!validatedForm}>Sign Up</Button>
+                        <Button type='submit' variant='outline-primary' className='w-100 mt-3' disabled={!validatedForm}>Sign Up</Button>
                     </Form>
                 </Card.Body>
             </Card>

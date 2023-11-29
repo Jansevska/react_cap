@@ -45,7 +45,7 @@ export default function Login({ logUserIn, isLoggedIn, flashMessage }: LoginProp
     return (
         <>
             <h1 className="text-center">Sign In</h1>
-            <Card className='mt-3' data-bs-theme="light">
+            <Card className='mt-3' border="light" data-bs-theme="light">
                 <Card.Body>
                     <Form onSubmit={handleFormSubmit}>
                         <Form.Label htmlFor='username'>Username</Form.Label>
