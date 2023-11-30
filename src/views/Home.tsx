@@ -14,7 +14,7 @@ export default function Home({ loggedInUser }: HomeProps) {
         <>
         <Container fluid>
             <h1 className="display-6 mb-4">Home</h1>
-            <Card border="light" className="text-center mb-5">
+            <Card border="light" className="username text-center mb-5">
             <Card.Body>
                 { loggedInUser && <h2>Aloha {loggedInUser.username}</h2> }
             </Card.Body>
