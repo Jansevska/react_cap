@@ -14,6 +14,7 @@ import CategoryType from './types/category';
 import UserType from './types/auth';
 
 import { getMe } from './lib/apiWrapper';
+import Calendar from './components/Calendar';
 
 
 export default function App() {
@@ -67,6 +68,7 @@ export default function App() {
                     <Route path="/signup" element={<SignUp logUserIn={logUserIn} flashMessage={flashMessage} />} />
                     <Route path="/login" element={<LogIn logUserIn={logUserIn} isLoggedIn={isLoggedIn} flashMessage={flashMessage} />} />
                     <Route path="/posts/:postId" element={<EditPost currentUser={loggedInUser} flashMessage={flashMessage} />} />
+                    <Route path="/calendar" element={<Calendar/>}/>
                 </Routes>
             </Container>
         </BrowserRouter>

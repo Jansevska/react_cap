@@ -21,6 +21,7 @@ export default function Navigation({ isLoggedIn, handleLogOut}: Props) {
                     { isLoggedIn ? (
                         <>
                         <Nav.Link as={Link} to='/posts'>Posts</Nav.Link>
+                        <Nav.Link as={Link} to='/calendar'>Calendar</Nav.Link>
                         <Nav.Link as={Link} to='/' onClick={handleLogOut}>Logout</Nav.Link>
                         </>
                     ) : (

@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
 // background: linear-gradient(to right, #c7c7eb, #ccf2dd);
+// background-color: #ffffff7d;
 
 export const WeatherWrapper = styled.div`
 height: 100vh;
 .container {
 background: white;
-border-radius: 12px;
+border-radius: 10px;
 padding: 1rem;
 position: absolute;
-top: 50%;
+top: 40%;
 left: 50%;
 transform: translate(-50%, -50%);
 box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
@@ -153,8 +154,9 @@ background: white;
 
 
 .loading {
+background: white;
 height: 400px;
-width: 300px;
+width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -164,6 +166,7 @@ z-index: 9999;
 
 .loadingIcon {
 font-size: 3rem;
+background: white;
 
 /* DO LATER NOT WHEN CREATING UI */
 animation: spin 2s linear infinite;
@@ -172,6 +175,7 @@ p {
 font-size: 22px;
 margin-top: 10px;
 font-family: "Josefin Sans", sans-serif;
+background: white;
 }
 }
 
