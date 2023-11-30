@@ -38,7 +38,7 @@ const DiplayWeather = () => {
     const [searchCity, setSearchCity] = useState("")
 
     const fetchCurrentWeather = async (lat:number, lon:number) => {
-        const url = `${api_Endpoint}weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=imperial`;
+        const url = `${api_Endpoint}weather?lat=${20.7702}&lon=${-156.2682}&appid=${api_key}&units=imperial`;
         const response = await axios.get(url);
         return response.data;
     };
@@ -137,7 +137,7 @@ const DiplayWeather = () => {
                         <>
                         <div className="weatherArea">
                             <h1>{weatherData.name}</h1>
-                            <span>{}weatherData.sys.country</span>
+                            <span>{weatherData.sys.country}</span>
                             <div className="icon">
                                 {iconChanger(weatherData.weather[0].main)}
                             </div>
