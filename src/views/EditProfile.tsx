@@ -15,7 +15,7 @@ type Props = {
 }
 
 export default function EditProfile({ currentUser, flashMessage }: Props) {
-    const { token, userId } = useParams();
+    const { userId } = useParams();
     const navigate = useNavigate();
 
     const [userToEdit, setUserToEdit] = useState<UserType|null>(null);
@@ -26,6 +26,7 @@ export default function EditProfile({ currentUser, flashMessage }: Props) {
 
     useEffect(() => {
         async function getUserToEdit(){
+            const token = localStorage.getItem('token') || ''
             let response = await getMe(token!);
             if (response.error){
                 console.warn(response.error);
@@ -54,6 +55,7 @@ export default function EditProfile({ currentUser, flashMessage }: Props) {
     const handleFormSubmit = async (e:React.FormEvent) => {
         e.preventDefault();
         const token = localStorage.getItem('token') || ''
+        console.log(token, userId, userToEdit)
         const response = await editUser(token, userId!, userToEdit!);
         if (response.error){
             flashMessage(response.error, 'danger')

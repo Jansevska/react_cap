@@ -86,7 +86,7 @@ const DiplayWeather = () => {
     //             iconElement = 
     //             break;
 
-    //         case "Clear":
+    //         case "Sunny":
     //             iconElement = 133
     //             break;
 
@@ -117,7 +117,8 @@ const DiplayWeather = () => {
                                 <h1>{weatherData.location.name}</h1>
                                 <span>{weatherData.location.region} | {weatherData.location.country}</span>
                                 <div className="icon">
-                                {/* {iconChanger(weatherData.current.condition.text)} */}
+                                    <img src={`https://www.weatherapi.com/docs/${weatherData.current.condition.text}`}/>
+                                
                                 </div>
                                 <h1>{weatherData.current.temp_f}</h1>
                                 <h2>{weatherData.current.condition.text}</h2>

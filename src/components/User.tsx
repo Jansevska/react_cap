@@ -18,7 +18,7 @@ export default function User({ currentUser }: Props) {
                 <Card.Title>About Me</Card.Title>
                 <Card.Text>I'm not sure what to write about me right now... I'll leave this for later.</Card.Text>
                 <Card.Subtitle>
-                    <Link to={`/users/:userId${currentUser?.id}`}>
+                    <Link to={`/users/${currentUser?.id}`}>
                         <Button variant='outline-primary' className='mt-3'>Edit Profile</Button>
                         <Button variant='outline-danger' className='mt-3 ms-4'>Delete Profile</Button>
                     </Link>
