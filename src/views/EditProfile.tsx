@@ -76,7 +76,7 @@ export default function EditProfile({ currentUser, flashMessage }: Props) {
 
     return (
         <>
-            <h1 className="text-center">Edit {currentUser?.username}'s Profile Information</h1>
+            <h1 className="text-center display-6">Edit {currentUser?.username}'s Profile Information</h1>
             {userToEdit && (
                 <Card className='mt-3' data-bs-theme="light" >
                     <Card.Body>

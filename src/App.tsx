@@ -14,7 +14,7 @@ import CategoryType from './types/category';
 import UserType from './types/auth';
 
 import { getMe } from './lib/apiWrapper';
-import Calendar from './components/Calendar';
+// import Calendar from './components/Calendar';
 import UserProfile from './views/UserProfile';
 import EditProfile from './views/EditProfile';
 
@@ -62,7 +62,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <Container data-bs-theme="dark">
-                <Navigation isLoggedIn={isLoggedIn} handleLogOut={logUserOut}/>
+                <Navigation isLoggedIn={isLoggedIn} handleLogOut={logUserOut} currentUser={loggedInUser}/>
                 {message && category && <AlertMessage message={message} category={category} flashMessage={flashMessage} />}
                 <Routes>
                     <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
@@ -70,9 +70,9 @@ export default function App() {
                     <Route path="/signup" element={<SignUp logUserIn={logUserIn} flashMessage={flashMessage} />} />
                     <Route path="/login" element={<LogIn logUserIn={logUserIn} isLoggedIn={isLoggedIn} flashMessage={flashMessage} />} />
                     <Route path="/posts/:postId" element={<EditPost currentUser={loggedInUser} flashMessage={flashMessage} />} />
-                    <Route path="/users" element={<UserProfile isLoggedIn={isLoggedIn} currentUser={loggedInUser} flashMessage={flashMessage}/>} />
+                    <Route path="/users" element={<UserProfile currentUser={loggedInUser} flashMessage={flashMessage}/>} />
                     <Route path="/users/:userId" element={<EditProfile currentUser={loggedInUser} flashMessage={flashMessage}/>} />
-                    <Route path="/calendar" element={<Calendar/>}/>
+                    {/* <Route path="/calendar" element={<Calendar/>}/> */}
                 </Routes>
             </Container>
         </BrowserRouter>

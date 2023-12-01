@@ -14,11 +14,12 @@ export default function User({ currentUser }: Props) {
             {/* <Card.Img variant='top' src={post.imageUrl} /> */}
             <Card.Body >
                 <h1 className='display-6 mb-4'>{ currentUser?.firstName } {currentUser?.lastName}</h1>
+                <p className="mb-5">{ currentUser?.email }</p>
                 <Card.Title>About Me</Card.Title>
-                <Card.Text>This part need to be added to the db</Card.Text>
+                <Card.Text>I'm not sure what to write about me right now... I'll leave this for later.</Card.Text>
                 <Card.Subtitle>
-                    <Link to={`/users/${currentUser?.id}`}>
-                        <Button variant='outline-light' className='mt-3'>Edit Profile</Button>
+                    <Link to={`/users/:userId${currentUser?.id}`}>
+                        <Button variant='outline-primary' className='mt-3'>Edit Profile</Button>
                     </Link>
                 </Card.Subtitle>
             </Card.Body>

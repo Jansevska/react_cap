@@ -4,13 +4,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 // import { FaUser } from "react-icons/fa6";
 import { FaUserEdit } from "react-icons/fa";
+import UserType from '../types/auth';
 
 type Props = {
     isLoggedIn: boolean,
-    handleLogOut: ()=>void
+    handleLogOut: ()=>void,
+    currentUser: UserType|null
 }
 
-export default function Navigation({ isLoggedIn, handleLogOut}: Props) {
+export default function Navigation({ isLoggedIn, handleLogOut, currentUser}: Props) {
     return (
         <>
         {/* <style type="text/css">
@@ -24,7 +26,7 @@ export default function Navigation({ isLoggedIn, handleLogOut}: Props) {
                         <>
                         <Nav.Link as={Link} to='/users'>Profile</Nav.Link>
                         <Nav.Link as={Link} to='/posts'>Posts</Nav.Link>
-                        <Nav.Link as={Link} to='/calendar'>Calendar</Nav.Link>
+                        {/* <Nav.Link as={Link} to='/calendar'>Calendar</Nav.Link> */}
                         <Nav.Link as={Link} to='/' onClick={handleLogOut}>Logout</Nav.Link>
                         </>
                     ) : (
@@ -35,9 +37,9 @@ export default function Navigation({ isLoggedIn, handleLogOut}: Props) {
                     )}
                     </Nav>
                     {/* Add logic -> isLoggedIn */}
-                    <Navbar.Text className='me-2'>
-                        <FaUserEdit className="userIcon me-3 mb-2"/><a className='userId' href="#login">{"Username"}</a>
-                    </Navbar.Text>
+                    <Nav.Link className='me-2' as={Link} to='/users'>
+                        <FaUserEdit className="userIcon me-3 mb-2"/><a className='userId' href="#login">{currentUser?.username}</a>
+                    </Nav.Link>
                 </Container>
             </Navbar>
         </>
