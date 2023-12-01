@@ -28,8 +28,8 @@ interface WeatherDataProps{
 
 const DiplayWeather = () => {
 
-    const api_key = "c15a56613dcda17df5659a21b7605fd5";
-    const api_Endpoint = "https://api.openweathermap.org/data/2.5";
+    const api_key = "c6ac45ddf80c24f123c681782893bb7a";
+    const api_Endpoint = "https://api.openweathermap.org/data/2.5/";
 
     const [weatherData, setWeatherData] = useState<WeatherDataProps | null>(null);
 
@@ -38,7 +38,7 @@ const DiplayWeather = () => {
     const [searchCity, setSearchCity] = useState("")
 
     const fetchCurrentWeather = async (lat:number, lon:number) => {
-        const url = `${api_Endpoint}weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=imperial`;
+        const url = `${api_Endpoint}weather?lat=${20.7702}&lon=${-156.2682}&appid=${api_key}&units=imperial`;
         const response = await axios.get(url);
         return response.data;
     };

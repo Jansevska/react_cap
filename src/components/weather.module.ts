@@ -10,7 +10,7 @@ background: white;
 border-radius: 10px;
 padding: 1rem;
 position: absolute;
-top: 55%;
+top: 70%;
 left: 50%;
 transform: translate(-50%, -50%);
 box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
