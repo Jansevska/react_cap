@@ -95,7 +95,7 @@ font-family: "Bebas Neue", sans-serif;
 background: white;
 margin-bottom: 10px;
 font-family: "Inter", sans-serif;
-font-size: 2rem;
+font-size: 1.2rem;
 }
 
 

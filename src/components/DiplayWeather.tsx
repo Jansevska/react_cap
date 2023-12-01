@@ -3,53 +3,51 @@ import { WeatherWrapper } from "./weather.module"
 import { AiOutlineSearch } from "react-icons/ai"
 import { WiHumidity } from "react-icons/wi";
 import { SiWindicss } from "react-icons/si";
-import { BsFillSunFill, BsCloudyFill, BsFillCloudRainFill, BsFillCloudSunFill } from "react-icons/bs";
-import { TiWeatherPartlySunny } from "react-icons/ti"
-import { RiLoaderFill } from "react-icons/ri"
+// import 113 from "../assets/64x64/day"
 import axios from "axios"
 
-interface WeatherDataProps{
-    name:string,
-    main:{
-        temp:string,
-        humidity:number,
-    };
-    sys:{
-        country:string
-    };
-    weather:{
-        main:string,
-        description:string,
-    }[];
-    wind:{
-        speed:number
-    };
+interface WeatherDataProps {
+    location: {
+        name: string,
+        region: string,
+        country: string
+    },
+    current: {
+        temp_f: number,
+        condition: {
+            text: string,
+            icon: string,
+        },
+        wind_mph: number,
+        wind_dir: string,
+        humidity: number,
+        gust_mph: number
+    }
 }
 
 const DiplayWeather = () => {
 
-    const api_key = "c6ac45ddf80c24f123c681782893bb7a";
-    const api_Endpoint = "https://api.openweathermap.org/data/2.5/";
+    const api_key = "694fcda006794a1f9a5194313230410";
+    const api_Endpoint = "http://api.weatherapi.com/";
 
     const [weatherData, setWeatherData] = useState<WeatherDataProps | null>(null);
 
-    const [isLoading, setIsLoading] = useState(false)
-
     const [searchCity, setSearchCity] = useState("")
 
-    const fetchCurrentWeather = async (lat:number, lon:number) => {
-        const url = `${api_Endpoint}weather?lat=${20.7702}&lon=${-156.2682}&appid=${api_key}&units=imperial`;
+    const fetchCurrentWeather = async () => {
+        const url = `${api_Endpoint}v1/current.json?key=${api_key}&q=auto:ip`;
         const response = await axios.get(url);
         return response.data;
     };
 
-    const fetchWeatherData = async(city:string) => {
-        try{
-            const url = `${api_Endpoint}weather?q=${city}&appid=${api_key}&units=imperial`;
+    const fetchWeatherData = async (city: string) => {
+        try {
+            const url = `${api_Endpoint}v1/current.json?key=${api_key}&q=${city}`;
             const searchResponse = await axios.get(url);
+            console.log(fetchWeatherData)
 
-            const currentWeatherData:WeatherDataProps = searchResponse.data;
-            return {currentWeatherData};
+            const currentWeatherData: WeatherDataProps = searchResponse.data;
+            return { currentWeatherData };
         } catch (error) {
             console.error("No Data Found");
             throw error;
@@ -57,11 +55,11 @@ const DiplayWeather = () => {
     }
 
     const handleSearch = async () => {
-        if (searchCity.trim() === ""){
+        if (searchCity.trim() === "") {
             return;
         }
 
-        try{
+        try {
             const { currentWeatherData } = await fetchWeatherData(searchCity);
             setWeatherData(currentWeatherData)
         } catch (error) {
@@ -69,108 +67,96 @@ const DiplayWeather = () => {
         }
     };
 
-    const iconChanger = (weather:string) => {
-        let iconElement: React.ReactNode;
-        let iconColor: string;
-
-        switch(weather) {
-            case "rain":
-            iconElement = <BsFillCloudRainFill/>
-            iconColor="#272829";
-            break;
-
-            case "clear":
-            iconElement = <BsFillSunFill/>
-            iconColor="#102C57";
-            break;
-
-            case "broken clouds":
-            iconElement = <BsCloudyFill/>
-            iconColor="#272829";
-            break;
-
-            case "few clouds":
-            iconElement = <BsFillCloudSunFill/>
-            iconColor="#102C57";
-            break;
-
-            default:
-                iconElement = <TiWeatherPartlySunny />
-                iconColor="#7B2869"
-        }
-
-    return (
-        <span className="icon" style={{color:iconColor}}>
-            {iconElement}
-        </span>
-    )
-}
-
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const {latitude, longitude} = (position.coords)
-            Promise.all([fetchCurrentWeather(longitude, latitude)]).then(
+        navigator.geolocation.getCurrentPosition(() => {
+            Promise.all([fetchCurrentWeather()]).then(
                 ([currentWeather]) => {
                     setWeatherData(currentWeather);
-                    setIsLoading(true)
                     console.log(currentWeather)
                 }
             );
         });
     }, []);
 
-    return (
-        <WeatherWrapper>
+    // const iconChanger = (weather: string) => {
+    //     let iconElement: 
+
+    //     switch (weather) {
+    //         case "Rain":
+    //             iconElement = 
+    //             break;
+
+    //         case "Clear":
+    //             iconElement = 133
+    //             break;
+
+    //         case "Clouds":
+    //             iconElement = 
+    //             break;
+
+    //         default:
+    //     }
+
+        return (
+            <WeatherWrapper>
                 <div className="container">
                     <div className="searchArea">
                         <input type='text' placeholder="Search Location by City Name"
-                        value={searchCity}
-                        onChange={(e) => setSearchCity(e.target.value)}
+                            value={searchCity}
+                            onChange={(e) => setSearchCity(e.target.value)}
                         />
 
                         <div className="searchCircle">
-                            <AiOutlineSearch className="searchIcon" onClick={handleSearch}/>
+                            <AiOutlineSearch className="searchIcon" onClick={handleSearch} />
                         </div>
                     </div>
 
-                    {weatherData && isLoading ?(
+                    {weatherData && (
                         <>
-                        <div className="weatherArea">
-                            <h1>{weatherData.name}</h1>
-                            <span>{weatherData.sys.country}</span>
-                            <div className="icon">
-                                {iconChanger(weatherData.weather[0].main)}
+                            <div className="weatherArea">
+                                <h1>{weatherData.location.name}</h1>
+                                <span>{weatherData.location.region} | {weatherData.location.country}</span>
+                                <div className="icon">
+                                {/* {iconChanger(weatherData.current.condition.text)} */}
+                                </div>
+                                <h1>{weatherData.current.temp_f}</h1>
+                                <h2>{weatherData.current.condition.text}</h2>
                             </div>
-                            <h1>{weatherData.main.temp}</h1>
-                            <h2>{weatherData.weather[0].description}</h2>
-                        </div>
-                        <div className="bottomInfoArea">
-                            <div className="precipitation">
-                                <WiHumidity className="windIcon"/>
-                                <div className="windInfo">
-                                    <h2>{weatherData.main.humidity}</h2>
-                                    <p>Humidity</p>
+                            <div className="bottomInfoArea">
+                                <div className="precipitation">
+                                    <WiHumidity className="windIcon" />
+                                    <div className="windInfo">
+                                        <h2>{weatherData.current.humidity}</h2>
+                                        <p>Humidity</p>
+                                    </div>
+                                </div>
+                                <div className="wind">
+                                    <SiWindicss className="windIcon" />
+                                    <div className="windInfo">
+                                        <h2>{weatherData.current.wind_mph} mph</h2>
+                                        <p>Wind Speed</p>
+                                    </div>
+                                </div>
+                                <div className="wind">
+                                    <SiWindicss className="windIcon" />
+                                    <div className="windInfo">
+                                        <h2>{weatherData.current.gust_mph} mph</h2>
+                                        <p>Wind Gusts</p>
+                                    </div>
+                                </div>
+                                <div className="wind">
+                                    <SiWindicss className="windIcon" />
+                                    <div className="windInfo">
+                                        <h2>{weatherData.current.wind_dir}</h2>
+                                        <p>Wind Direction</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="wind">
-                                <SiWindicss className="windIcon"/>
-                                <div className="windInfo">
-                                    <h2>{weatherData.wind.speed} mph</h2>
-                                    <p>Wind Speed</p>
-                                </div>
-                            </div>
-                        </div>
                         </>
-                    ) : (
-                        <div className="loading">
-                            <RiLoaderFill className="loadingIcon" />
-                            <p>Loading</p>
-                        </div>
                     )}
                 </div>
+            </WeatherWrapper>
+        )
+    }
 
-        </WeatherWrapper>
-    )
-}
-
-export default DiplayWeather
+    export default DiplayWeather
