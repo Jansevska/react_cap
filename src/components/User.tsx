@@ -20,6 +20,7 @@ export default function User({ currentUser }: Props) {
                 <Card.Subtitle>
                     <Link to={`/users/:userId${currentUser?.id}`}>
                         <Button variant='outline-primary' className='mt-3'>Edit Profile</Button>
+                        <Button variant='outline-danger' className='mt-3 ms-4'>Delete Profile</Button>
                     </Link>
                 </Card.Subtitle>
             </Card.Body>
