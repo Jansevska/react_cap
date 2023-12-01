@@ -6,3 +6,8 @@
 .username {
     color: rgb(43, 142, 235);
 }
+
+.userId {
+    text-decoration: none;
+    font-size: larger;
+}

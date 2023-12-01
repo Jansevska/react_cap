@@ -15,6 +15,8 @@ import UserType from './types/auth';
 
 import { getMe } from './lib/apiWrapper';
 import Calendar from './components/Calendar';
+import UserProfile from './views/UserProfile';
+import EditProfile from './views/EditProfile';
 
 
 export default function App() {
@@ -64,10 +66,12 @@ export default function App() {
                 {message && category && <AlertMessage message={message} category={category} flashMessage={flashMessage} />}
                 <Routes>
                     <Route path="/" element={<Home loggedInUser={loggedInUser} />} />
-                    <Route path="/posts" element={<PostsView isLoggedIn={isLoggedIn} flashMessage={flashMessage} currentUser={loggedInUser} />}></Route>
+                    <Route path="/posts" element={<PostsView isLoggedIn={isLoggedIn} flashMessage={flashMessage} currentUser={loggedInUser} />}/>
                     <Route path="/signup" element={<SignUp logUserIn={logUserIn} flashMessage={flashMessage} />} />
                     <Route path="/login" element={<LogIn logUserIn={logUserIn} isLoggedIn={isLoggedIn} flashMessage={flashMessage} />} />
                     <Route path="/posts/:postId" element={<EditPost currentUser={loggedInUser} flashMessage={flashMessage} />} />
+                    <Route path="/users" element={<UserProfile isLoggedIn={isLoggedIn} currentUser={loggedInUser} flashMessage={flashMessage}/>} />
+                    <Route path="/users/:userId" element={<EditProfile currentUser={loggedInUser} flashMessage={flashMessage}/>} />
                     <Route path="/calendar" element={<Calendar/>}/>
                 </Routes>
             </Container>

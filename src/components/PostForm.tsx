@@ -39,8 +39,10 @@ export default function PostForm({ flashMessage, setDisplay, setForm, toggle }: 
                 <Form onSubmit={handleFormSubmit}>
                     <Form.Label htmlFor='title'>Title</Form.Label>
                     <Form.Control name='title' placeholder='Enter Post Title' onChange={handleInputChange} value={postFormData.title} />
+
                     <Form.Label htmlFor='body'>Body</Form.Label>
                     <Form.Control name='body' placeholder='Enter Body Title' onChange={handleInputChange} value={postFormData.body} />
+                    
                     <Button variant='outline-secondary' className='w-100 mt-3' type='submit'>Create Post</Button>
                 </Form>
             </Card.Body>

@@ -2,6 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+// import { FaUser } from "react-icons/fa6";
+import { FaUserEdit } from "react-icons/fa";
 
 type Props = {
     isLoggedIn: boolean,
@@ -20,6 +22,7 @@ export default function Navigation({ isLoggedIn, handleLogOut}: Props) {
                     <Nav className="me-auto">
                     { isLoggedIn ? (
                         <>
+                        <Nav.Link as={Link} to='/users'>Profile</Nav.Link>
                         <Nav.Link as={Link} to='/posts'>Posts</Nav.Link>
                         <Nav.Link as={Link} to='/calendar'>Calendar</Nav.Link>
                         <Nav.Link as={Link} to='/' onClick={handleLogOut}>Logout</Nav.Link>
@@ -31,8 +34,9 @@ export default function Navigation({ isLoggedIn, handleLogOut}: Props) {
                         </>
                     )}
                     </Nav>
-                    <Navbar.Text>
-                        Signed in as: <a href="#login">{"Emili"}</a>
+                    {/* Add logic -> isLoggedIn */}
+                    <Navbar.Text className='me-2'>
+                        <FaUserEdit className="userIcon me-3 mb-2"/><a className='userId' href="#login">{"Username"}</a>
                     </Navbar.Text>
                 </Container>
             </Navbar>

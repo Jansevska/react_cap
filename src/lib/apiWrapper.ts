@@ -5,7 +5,7 @@ import UserType from '../types/auth';
 
 
 
-const base: string = 'https://flask-cap.onrender.com/api'
+const base: string = 'https://flask-cap.onrender.com/api' 
 const postEndpoint: string = '/posts'
 const userEndpoint: string = '/users'
 const tokenEndpoint: string = '/token'
@@ -164,6 +164,38 @@ async function deletePost(token:string, postId:string): Promise<APIResponse<{suc
     return {data, error}
 }
 
+async function editUser(token:string, userId:string, editedUserData:UserType): Promise<APIResponse<UserType>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientTokenAuth(token).put(userEndpoint + '/' + userId, editedUserData);
+        data = response.data;
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data.error
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return {data, error}
+}
+
+async function deleteUser(token:string, userId:string): Promise<APIResponse<{success:string}>> {
+    let data;
+    let error;
+    try{
+        const response = await apiClientTokenAuth(token).delete(userEndpoint + '/' + userId);
+        data = response.data;
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data.error
+        } else {
+            error = 'Something went wrong'
+        }
+    }
+    return {data, error}
+}
+
 export {
     getAllPosts,
     createNewUser,
@@ -173,4 +205,6 @@ export {
     getPost,
     editPost,
     deletePost,
+    editUser,
+    deleteUser
 }
